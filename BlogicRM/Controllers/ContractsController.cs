@@ -85,8 +85,8 @@ namespace BlogicRM.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "ClientID", contract.ClientID);
-            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "ConsultantID", contract.ConsultantID);
+            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "FullName", contract.ClientID);
+            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "FullName", contract.ConsultantID);
             return View(contract);
         }
 
@@ -122,8 +122,8 @@ namespace BlogicRM.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "ClientID", contract.ClientID);
-            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "ConsultantID", contract.ConsultantID);
+            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "FullName", contract.ClientID);
+            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "FullName", contract.ConsultantID);
             return View(contract);
         }
 

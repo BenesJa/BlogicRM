@@ -25,6 +25,12 @@ namespace BlogicRM.Models.Entity
         public int ConsultantID { get; set; }
         public Consultant Consultant { get; set; }
 
+        //public ICollection<Consultant> Consultants { get; set; } 
+        //TODO: many-to-many
+        //(Unable to determine the relationship
+        //represented by navigation 'Consultant.Contracts'
+        //of type 'ICollection<Contract>'.)
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime CloseDate { get; set; }
