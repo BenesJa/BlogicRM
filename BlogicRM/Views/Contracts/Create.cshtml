@@ -1,0 +1,60 @@
+﻿@model BlogicRM.Models.Entity.Contract
+
+@{
+    ViewData["Title"] = "Vytvoření smlouvy";
+}
+
+<h1>Vytvoření smlouvy</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EvidenceNumber" class="control-label">Evidenční číslo</label>
+                <input asp-for="EvidenceNumber" class="form-control" />
+                <span asp-validation-for="EvidenceNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Institution" class="control-label">Instituce</label>
+                <input asp-for="Institution" class="form-control" />
+                <span asp-validation-for="Institution" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientID" class="control-label">Klient</label>
+                <select asp-for="ClientID" class ="form-control" asp-items="ViewBag.ClientID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConsultantID" class="control-label">Poradce</label>
+                <select asp-for="ConsultantID" class ="form-control" asp-items="ViewBag.ConsultantID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CloseDate" class="control-label">Datum uzavření</label>
+                <input asp-for="CloseDate" class="form-control" />
+                <span asp-validation-for="CloseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiDate" class="control-label">Datum platnosti</label>
+                <input asp-for="ExpiDate" class="form-control" />
+                <span asp-validation-for="ExpiDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label">Datum ukončení</label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Vytvořit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Zpět na seznam smluv</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

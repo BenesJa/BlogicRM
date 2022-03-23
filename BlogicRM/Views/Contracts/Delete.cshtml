@@ -1,0 +1,63 @@
+﻿@model BlogicRM.Models.Entity.Contract
+
+@{
+    ViewData["Title"] = "Smazání smlouvy";
+}
+
+<h1>Smazání</h1>
+
+<h3>Jste si jisti že chcete smazat smlouvu?</h3>
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Evidenční číslo:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EvidenceNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            Instituce:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Institution)
+        </dd>
+        <dt class = "col-sm-2">
+            Klient
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Client.FullName)
+        </dd class>
+        <dt class = "col-sm-2">
+            Poradce:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Consultant.FullName)
+        </dd class>
+        <dt class = "col-sm-2">
+            Datum uzavření
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CloseDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Datum platnosti:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ExpiDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Datum uzavření:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Smazat" class="btn btn-danger" /> |
+        <a asp-action="Index">Zpět na seznam smluv</a>
+    </form>
+</div>

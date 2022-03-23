@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BlogicRM.Models.Entity.Contract>
+
+@{
+    ViewData["Title"] = "Seznam smluv";
+}
+
+<h1>Smlouvy</h1>
+
+<p>
+    <a asp-action="Create">Vytvoření nové smlouvy</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Evidenční číslo
+            </th>
+            <th>
+                Institut
+            </th>
+            <th>
+                Klient
+            </th>
+            <th>
+                Poradce
+            </th>
+            <th>
+                Datum uzavření
+            </th>
+            <th>
+                Datum platnosti
+            </th>
+            <th>
+                Datum ukončení
+            </th>
+            <th>
+                Možnosti
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EvidenceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Institution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consultant.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CloseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Upravit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Detail</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Smazat</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
