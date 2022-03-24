@@ -150,5 +150,15 @@ namespace BlogicRM.Controllers
         {
             return _context.Clients.Any(e => e.ClientID == id);
         }
+        public IActionResult ExportCSV()
+        {
+            StringBuilder s = new StringBuilder();
+            s.AppendLine("FirstName, LastName, Email, PhoneNumber, IdentificationNumber, Age");
+            foreach (Client client in _context.Clients)
+            {
+                s.AppendLine($"{client.FirstName},{client.LastName},{client.Email},{client.PhoneNumber},{client.IdentificationNumber},{client.Age}");
+            }
+            return File(Encoding.UTF32.GetBytes(s.ToString()), "text/csv", $"ClientExport{DateTime.Now}.csv");
+        }
     }
 }
