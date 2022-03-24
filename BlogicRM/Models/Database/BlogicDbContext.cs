@@ -18,7 +18,6 @@ namespace BlogicRM.Models.Database
         public BlogicDbContext(DbContextOptions options) : base(options)
         { 
         }
-
        
     }
 }

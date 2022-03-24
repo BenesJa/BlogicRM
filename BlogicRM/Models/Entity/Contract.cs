@@ -23,9 +23,10 @@ namespace BlogicRM.Models.Entity
 
         [ForeignKey("Consultant")]
         public int ConsultantID { get; set; }
+
         public Consultant Consultant { get; set; }
 
-        //public ICollection<Consultant> Consultants { get; set; } 
+        //public ICollection<Consultant> Consultants { get; set; }
         //TODO: many-to-many
         //(Unable to determine the relationship
         //represented by navigation 'Consultant.Contracts'

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogicRM.Migrations
 {
     [DbContext(typeof(BlogicDbContext))]
-    [Migration("20220323164759_mig12")]
-    partial class mig12
+    [Migration("20220324134823_dbOld")]
+    partial class dbOld
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace BlogicRM.Migrations
 
             modelBuilder.Entity("BlogicRM.Models.Entity.Client", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ClientID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -43,14 +43,14 @@ namespace BlogicRM.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("ClientID");
 
                     b.ToTable("Client");
                 });
 
             modelBuilder.Entity("BlogicRM.Models.Entity.Consultant", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ConsultantID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -72,7 +72,7 @@ namespace BlogicRM.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("ConsultantID");
 
                     b.ToTable("Consultant");
                 });
@@ -106,7 +106,40 @@ namespace BlogicRM.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ClientID");
+
+                    b.HasIndex("ConsultantID");
+
                     b.ToTable("Contract");
+                });
+
+            modelBuilder.Entity("BlogicRM.Models.Entity.Contract", b =>
+                {
+                    b.HasOne("BlogicRM.Models.Entity.Client", "Client")
+                        .WithMany("Contracts")
+                        .HasForeignKey("ClientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogicRM.Models.Entity.Consultant", "Consultant")
+                        .WithMany("Contracts")
+                        .HasForeignKey("ConsultantID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Consultant");
+                });
+
+            modelBuilder.Entity("BlogicRM.Models.Entity.Client", b =>
+                {
+                    b.Navigation("Contracts");
+                });
+
+            modelBuilder.Entity("BlogicRM.Models.Entity.Consultant", b =>
+                {
+                    b.Navigation("Contracts");
                 });
 #pragma warning restore 612, 618
         }

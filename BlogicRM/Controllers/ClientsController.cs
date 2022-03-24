@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BlogicRM.Models.Database;
 using BlogicRM.Models.Entity;
+using System.Text;
 
 namespace BlogicRM.Controllers
 {

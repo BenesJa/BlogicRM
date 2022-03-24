@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BlogicRM.Models.Database;
 using BlogicRM.Models.Entity;
+using System.Text;
 
 namespace BlogicRM.Controllers
 {
@@ -50,7 +51,7 @@ namespace BlogicRM.Controllers
         public IActionResult Create()
         {
             ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "FullName");
-            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "FullName");
+            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "Name");
             return View();
         }
 
@@ -68,7 +69,7 @@ namespace BlogicRM.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "FullName", contract.ClientID);
-            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "FullName", contract.ConsultantID);
+            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "Name", contract.ConsultantID);
             return View(contract);
         }
 
@@ -86,7 +87,7 @@ namespace BlogicRM.Controllers
                 return NotFound();
             }
             ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "FullName", contract.ClientID);
-            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "FullName", contract.ConsultantID);
+            ViewData["ConsultantID"] = new SelectList(_context.Consultants, "ConsultantID", "Name", contract.ConsultantID);
             return View(contract);
         }
 
@@ -162,5 +163,18 @@ namespace BlogicRM.Controllers
         {
             return _context.Contracts.Any(e => e.ID == id);
         }
+
+        //public IActionResult ExportCSV()
+        //{
+        //    StringBuilder s = new StringBuilder();
+        //    s.AppendLine("EvidenceNumber, Institution, Client, Consultant, CloseDate, ExpiDate, EndDate");
+        //    foreach (Contract contract in _context.Contracts)
+        //    {
+        //        Client client = _context.Clients.FirstOrDefault(e => e.ClientID == contract.ClientID);
+        //        Consultant consultant = _context.Consultants.FirstOrDefault(e => e.ConsultantID == contract.ConsultantID);
+        //        s.AppendLine($"{contract.EvidenceNumber},{contract.Institution},{client.Name},{consultant.Name},{contract.CloseDate},{contract.ExpiDate},{contract.EndDate}");
+        //    }
+        //    return File(Encoding.UTF32.GetBytes(s.ToString()), "text/csv", $"ConsultantExport{DateTime.Now}.csv");
+        //}
     }
 }

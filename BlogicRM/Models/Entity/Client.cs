@@ -36,6 +36,7 @@ namespace BlogicRM.Models.Entity
                 return FirstName + " " + LastName + " " + IdentificationNumber;
             }
         }
+
         public string Name
         {
             get
